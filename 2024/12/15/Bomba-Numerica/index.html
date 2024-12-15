@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bomba Numerica 3.0 | Yzbtdmz1</title>
+    <meta name="author" content="jiajun" />
+    <meta name="description" content="Un semplice blog" />
+    <meta name="keywords" content="Blog di jiajun" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YZBTDMZ1</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YZBTDMZ1</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Bomba Numerica 3.0</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/15
+        </span>
+        
+        <span class="category">
+            <a href="/categories/Documenti/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Documenti
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/gioco/" style="color: #03a9f4">
+                    gioco
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Python/" style="color: #00bcd4">
+                    Python
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/BombaNumerica/" style="color: #ff7d73">
+                    BombaNumerica
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="🎮-Bomba-Numerica-3-0"><a href="#🎮-Bomba-Numerica-3-0" class="headerlink" title="🎮 Bomba Numerica 3.0"></a>🎮 Bomba Numerica 3.0</h1><h2 id="📝-Regole-del-Gioco"><a href="#📝-Regole-del-Gioco" class="headerlink" title="📝 Regole del Gioco"></a>📝 Regole del Gioco</h2><p><strong>Bomba Numerica</strong> è un gioco di abilità e fortuna! Il tuo obiettivo è evitare di indovinare il <strong>numero segreto</strong> per vincere. Ma attenzione: se lo indovini, <strong>attiverai la bomba e perderai la partita</strong>!</p>
+<hr>
+<h2 id="🎯-Obiettivo-del-Gioco"><a href="#🎯-Obiettivo-del-Gioco" class="headerlink" title="🎯 Obiettivo del Gioco"></a>🎯 Obiettivo del Gioco</h2><ul>
+<li><strong>Evita di indovinare il numero segreto (la bomba)!</strong></li>
+<li>Ogni giocatore inserisce un numero. Dopo ogni turno, il gioco aggiorna l’intervallo e indica se il numero inserito è troppo alto o troppo basso.</li>
+<li>Vince il giocatore che <strong>non attiva la bomba</strong>.</li>
+</ul>
+<hr>
+<h2 id="🔧-Meccaniche-di-Gioco"><a href="#🔧-Meccaniche-di-Gioco" class="headerlink" title="🔧 Meccaniche di Gioco"></a>🔧 Meccaniche di Gioco</h2><ol>
+<li>Il gioco genera casualmente un <strong>numero segreto</strong> (la bomba) tra <strong>2</strong> e <strong>99</strong>.</li>
+<li>I giocatori si alternano a turno, inserendo un numero all’interno di un intervallo dinamico.</li>
+<li>Dopo ogni tentativo, il gioco:<ul>
+<li>Aggiorna l’intervallo di numeri disponibili.</li>
+<li>Indica se il numero inserito è <strong>troppo alto</strong> o <strong>troppo basso</strong>.</li>
+</ul>
+</li>
+<li><strong>Attenzione</strong>: se un giocatore indovina il numero segreto, perde la partita!</li>
+</ol>
+<hr>
+<h2 id="🚀-Funzionalita-Speciali"><a href="#🚀-Funzionalita-Speciali" class="headerlink" title="🚀 Funzionalità Speciali"></a>🚀 Funzionalità Speciali</h2><ul>
+<li><strong>Modalità Multiplayer</strong>: due giocatori competono per evitare la bomba.</li>
+<li><strong>Design Dinamico</strong>: il gioco si adatta automaticamente in base ai numeri inseriti.</li>
+<li><strong>Colori Vivaci</strong>: l’interfaccia utilizza la libreria <code>Colorama</code> per migliorare l’esperienza visiva.</li>
+</ul>
+<hr>
+<h2 id="📥-Come-Giocare"><a href="#📥-Come-Giocare" class="headerlink" title="📥 Come Giocare"></a>📥 Come Giocare</h2><ol>
+<li><strong>Scarica ed esegui</strong> il file eseguibile <code>BombaNumerica3.0.exe</code><br><a target="_blank" rel="noopener" href="https://xiajiajun516.github.io/files/BombaNumerica3.0.exe">Scarica BombaNumerica3.0</a></li>
+<li>Segui le istruzioni visualizzate sullo schermo:<ul>
+<li>Inserisci il tuo nome.</li>
+<li>Digita un numero entro l’intervallo specificato.</li>
+</ul>
+</li>
+<li>Evita di indovinare il numero segreto per vincere!</li>
+</ol>
+<hr>
+<h2 id="🛠️-Tecnologie-Utilizzate"><a href="#🛠️-Tecnologie-Utilizzate" class="headerlink" title="🛠️ Tecnologie Utilizzate"></a>🛠️ Tecnologie Utilizzate</h2><ul>
+<li><strong>Linguaggio di Programmazione</strong>: Python</li>
+<li><strong>Libreria di Colore</strong>: <code>Colorama</code></li>
+<li><strong>Generazione Casualità</strong>: Modulo <code>random</code></li>
+</ul>
+<hr>
+<h2 id="⚠️-Note-Importanti"><a href="#⚠️-Note-Importanti" class="headerlink" title="⚠️ Note Importanti"></a>⚠️ Note Importanti</h2><ul>
+<li>Il gioco contiene un’<strong>easter egg speciale</strong>: se un giocatore si chiama “Robert”, il computer <strong>si spegne automaticamente</strong>. Gioca con cautela! 💻</li>
+</ul>
+<hr>
+<h2 id="📷-Anteprima-del-Gioco"><a href="#📷-Anteprima-del-Gioco" class="headerlink" title="📷 Anteprima del Gioco"></a>📷 Anteprima del Gioco</h2>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Yzbtdmz1
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;jiajun
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="xiajiajun516/xiajiajun516.github.io"
+    data-repo-id="R_kgDOM42c_g"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOM42c_s4Ci5_j"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="it"
+    crossorigin
+    async
+></script>
+
+
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="xiajiajun516/xiajiajun516.github.io"
+        data-repo-id="R_kgDOM42c_g"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM42c_s4Ci5_j"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="it"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+</body>
+</html>
